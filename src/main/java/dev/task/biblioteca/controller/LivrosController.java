@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/Livros")
+@RequestMapping("/livros")
 public class LivrosController {
 
     private final LivrosService service;
@@ -25,5 +25,19 @@ public class LivrosController {
     @PostMapping
     public Livros create(@RequestBody Livros livros) {
         return service.save(livros);
+    }
+    @GetMapping("/{id}")
+    public Livros getById(@PathVariable Long id) {
+        return service.getById(id);
+    }
+
+    @PutMapping("/{id}")
+    public Livros update(@PathVariable Long id, @RequestBody Livros livros) {
+        return service.update(id, livros);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        service.delete(id);
     }
 }

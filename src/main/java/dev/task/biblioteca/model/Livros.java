@@ -14,6 +14,7 @@ public class Livros {
     private Long id;
     private String nome;
     private String autor;
+    @Column(name = "data_lancamento")
     private LocalDate dataLancamento;
     private Integer quantidade;
 }

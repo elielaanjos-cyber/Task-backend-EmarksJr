@@ -29,4 +29,18 @@ public class LivrosService {
     public void delete(Long id) {
         repository.deleteById(id);
     }
+
+    public Livros getById(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Livro não encontrado"));
+    }
+
+    public Livros update(Long id, Livros dados) {
+        Livros livro = getById(id);
+        livro.setNome(dados.getNome());
+        livro.setAutor(dados.getAutor());
+        livro.setDataLancamento(dados.getDataLancamento());
+        livro.setQuantidade(dados.getQuantidade());
+        return repository.save(livro);
+    }
 }
